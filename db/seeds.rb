@@ -10,7 +10,7 @@ credential_file = './auth.json'
   s_service.authorization = authorizer
   for num in 1..47
     num = num.to_s
-    data = s_service.batch_get_spreadsheet_values('1hZaEtaLftNxqHeeWUcgsJnAXLi5xXIQvdty36rBz1vE', ranges: 'prefecture!A' + num + ':C' + num).value_ranges.first.values
+    data = s_service.batch_get_spreadsheet_values(ENV['SPREADSHEET_ID'], ranges: 'prefecture!A' + num + ':C' + num).value_ranges.first.values
     Prefecture.create({
       name: data[0][0].delete(' '),
       capital: data[0][1].delete(' '),
